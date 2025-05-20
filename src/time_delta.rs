@@ -10,6 +10,8 @@
 
 //! Temporal quantification
 
+#[cfg(all(not(feature = "std"), feature = "core_error"))]
+use core::error::Error;
 use core::fmt;
 use core::ops::{Add, AddAssign, Div, Mul, Neg, Sub, SubAssign};
 use core::time::Duration;

@@ -238,6 +238,9 @@ pub struct ParseWeekdayError {
     pub(crate) _dummy: (),
 }
 
+#[cfg(all(not(feature = "std"), feature = "core_error"))]
+impl core::error::Error for ParseMonthError {}
+
 #[cfg(feature = "std")]
 impl std::error::Error for ParseWeekdayError {}
 

@@ -33,6 +33,8 @@
 
 #[cfg(all(feature = "alloc", not(feature = "std"), not(test)))]
 use alloc::boxed::Box;
+#[cfg(all(feature = "core_error", not(feature = "std")))]
+use core::error::Error;
 use core::fmt;
 use core::str::FromStr;
 #[cfg(feature = "std")]
@@ -450,7 +452,7 @@ impl fmt::Display for ParseError {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(any(feature = "core_error", feature = "std"))]
 impl Error for ParseError {
     #[allow(deprecated)]
     fn description(&self) -> &str {
